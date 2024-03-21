@@ -1,5 +1,6 @@
 package programmerzamannow.json;
 
+import java.util.Date;
 import java.util.List;
 
 public class Person {
@@ -8,6 +9,24 @@ public class Person {
     private String name;
     private List<String> hobbies;
     private Address address;
+    private Date createdAt;
+    private Date updatedAt;
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public String getId() {
         return id;
