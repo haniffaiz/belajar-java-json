@@ -1,5 +1,9 @@
 package programmerzamannow.json;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.util.List;
 
@@ -7,10 +11,34 @@ public class Person {
 
     private String id;
     private String name;
+
+    @JsonProperty("full_name")
+    private String fullname;
+
+    @JsonIgnore
+    private String password;
     private List<String> hobbies;
     private Address address;
     private Date createdAt;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Date getCreatedAt() {
         return createdAt;
