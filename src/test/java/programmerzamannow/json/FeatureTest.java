@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -41,5 +42,25 @@ public class FeatureTest {
         Assertions.assertEquals("1", person.getId());
         Assertions.assertEquals("Hanif", person.getName());
         Assertions.assertEquals(List.of("Coding"), person.getHobbies());
+    }
+
+    @Test
+    void serializationFeature() throws JsonProcessingException {
+        Person person = new Person();
+        person.setId("1");
+        person.setName("Hanif");
+        person.setHobbies(List.of("Coding", "Reading"));
+
+        Address address = new Address();
+        address.setStreet("Jalan belum jadi");
+        address.setCity("Jakarta");
+        address.setCountry("Indonesia");
+        person.setAddress(address);
+
+        ObjectMapper objectMapper = new ObjectMapper()
+                .configure(SerializationFeature.INDENT_OUTPUT, true);
+        String json = objectMapper.writeValueAsString(person);
+
+        System.out.println(json);
     }
 }
